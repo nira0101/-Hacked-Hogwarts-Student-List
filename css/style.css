@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0%;
+}
+:root {
+  --primay-font: "Montserrat Alternates", sans-serif;
+  --secondary-font: "Architects Daughter", cursive;
+  --color1: #001233;
+  --color2: #001845;
+  --color3: #002855;
+  --grey1: #ced4da;
+  --gery2: #dee2e6;
+}
+
+.navi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1vw;
+  background-color: var(--color1);
+  height: auto;
+  padding: 1vw;
+}
+.logo {
+  font-family: var(--primay-font);
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  margin-left: 5vw;
+}
+
+.hog {
+  font-family: var(--secondary-font);
+  font-size: 18px;
+}
+
+.stu {
+  font-size: 26px;
+}
+
+.fa-hat-wizard:before {
+  font-size: 26px;
+}
+
+.search-box {
+  height: 40px;
+  border-radius: 40px;
+  background-color: var(--color2);
+  padding: 10px;
+  margin-right: 4vw;
+  position: absolute;
+  right: 64px;
+  top: 36px;
+}
+
+.search-box:hover > .search-txt {
+  width: 240px;
+}
+
+.search-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  background: var(--color2);
+  align-items: center;
+  transition: 0.4s;
+}
+.fa-search:before {
+  font-size: 20px;
+}
+
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0%;
+  font-size: 16px;
+  color: white;
+  transition: 0.4s;
+  width: 0;
+}
+
+.wrapper {
+  margin-left: 6.5vw;
+}
+
+.filter-sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter ul {
+  display: flex;
+}
+
+.filter li {
+  list-style-type: none;
+  padding: 0 20px;
+  margin: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: var(--primay-font);
+  background-color: var(--gery2);
+  padding: 12px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.sort {
+  overflow: hidden;
+  margin-right: 8.5vw;
+}
+
+.sort .dropbtn {
+  font-size: 12px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: var(--gery2);
+  font-family: var(--primay-font);
+  margin: 0;
+  font-weight: bold;
+}
+
+.sort:hover .dropbtn {
+  background-color: var(--grey1);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--grey1);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-family: var(--primay-font);
+  font-size: 10px;
+}
+
+.sort:hover .dropdown-content {
+  display: block;
+}

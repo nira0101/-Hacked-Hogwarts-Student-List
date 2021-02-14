@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hacked Hogwarts Student List</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="navi">
+      <div class="logo">
+        <h1 class="hog">Hogwarts</h1>
+
+        <h1 class="stu">Student<i class="fas fa-hat-wizard"></i></h1>
+      </div>
+      <div class="search-box">
+        <input
+          class="search-txt"
+          type="text"
+          name=""
+          placeholder="type to search"
+        />
+        <a class="search-btn" href="#">
+          <i class="fas fa-search"></i>
+        </a>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="filter-sort">
+        <section class="filter">
+          <ul>
+            <li class="list" data-filter="All">All</li>
+            <li class="list" data-filter="House">House</li>
+            <li class="list" data-filter="Responsibilities">
+              Responsibilities
+            </li>
+            <li class="list" data-filter="Blood">Blood</li>
+          </ul>
+        </section>
+        <section class="sort">
+          <button class="dropbtn">Sort by
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">name</a>
+            <a href="#">House</a>
+            <a href="#">Responsobilities</a>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
