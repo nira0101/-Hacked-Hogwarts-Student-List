@@ -96,23 +96,20 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
-.filter ul {
-  display: flex;
-}
-
-.filter li {
-  list-style-type: none;
-  padding: 0 20px;
-  margin: 5px;
-  letter-spacing: 1px;
-  cursor: pointer;
+button {
+  border: none;
+  font-size: 16px;
+  padding: 1vw;
   font-family: var(--primay-font);
-  background-color: var(--gery2);
-  padding: 12px;
-  font-weight: bold;
-  font-size: 12px;
 }
+button:hover {
+  background-color: lightgray;
+}
+button:active {
+  background-color: var(--color1);
+  color: white;
+}
+
 .sort {
   overflow: hidden;
   margin-right: 8.5vw;
@@ -156,4 +153,25 @@
 
 .sort:hover .dropdown-content {
   display: block;
+}
+
+.grids {
+  margin: 1.5vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(169px, 1fr));
+  grid-gap: 20px;
+}
+.students-name {
+  height: 110px;
+  width: 110px;
+  background: var(--grey1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 1px 5px 15px 5px #bababa;
+}
+.students-name h1 {
+  font-family: var(--secondary-font);
+  font-size: 15px;
 }
