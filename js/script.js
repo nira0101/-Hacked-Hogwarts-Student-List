@@ -6,14 +6,17 @@ let allStudents = [];
 
 //prototype for all students
 const Student = {
-  name: "",
-  house: " ",
-  gender: " ",
+  fname: "",
+  mname: "",
+  lname: "",
+  sHouse: "",
+  gender: "",
   responsibilities: "",
 };
 
 function init() {
   fetchData();
+  filterButton();
 }
 async function fetchData() {
   console.log(fetchData);
@@ -123,6 +126,7 @@ function prepareObject(jsonData) {
 
     //show data
     allStudents.push(studentData);
+    return studentData;
   });
 
   displayList();
@@ -137,6 +141,43 @@ function displayList() {
   allStudents.forEach(displayStudent);
 }
 
+function filterButton() {
+  document
+    .querySelectorAll("[data-action = 'filter']")
+    .forEach((button) => button.addEventListener("click", selectFilter));
+}
+
+function selectFilter(event) {
+  const filter = event.target.dataset.filter;
+  console.log(`user selected: ${filter}`);
+  filterList(filter);
+}
+
+function filterList(stuFil) {
+  let filteredList = allStudents;
+  if (stuFil === "Slytherin") {
+    filteredList = allStudents.filter(hSlytherin);
+  } else if (stuFil === "Ravenclaw") {
+    filteredList = allStudents.filter(hRavenclaw);
+  }
+  displayList(filteredList);
+}
+function hRavenclaw(studentData) {
+  console.log(hRavenclaw);
+  if (studentData.stuHouse === "Ravenclaw") {
+    return true;
+  } else {
+    return false;
+  }
+}
+function hSlytherin(studentData) {
+  if (studentData.house === "Slytherin") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function displayStudent(students) {
   //create clone
   const clone = document
@@ -144,7 +185,26 @@ function displayStudent(students) {
     .content.cloneNode(true);
 
   clone.querySelector(".fn").innerText = students.fName;
+  clone.querySelector(".sn").innerText = students.lName;
+
+  clone
+    .querySelector("article.students-name")
+    .addEventListener("click", (e) => showDetails(students));
 
   //append template
   document.querySelector("main").appendChild(clone);
 }
+
+//modal
+function showDetails(students) {
+  console.log(students);
+  modal.querySelector(".modalfname").textContent =
+    students.fName + " " + students.mName + " " + students.lName;
+  modal.querySelector(".modalhouse").textContent = students.house;
+  modal.querySelector(".modalgender").textContent = students.gender;
+  modal.classList.remove("hide");
+}
+const close = document.querySelector(".close");
+close.addEventListener("click", () => {
+  modal.classList.add("hide");
+});
