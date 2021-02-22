@@ -61,40 +61,23 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <button
-              class="sort"
-              data-action="sort"
-              data-sort-direction="asc"
-              data-sort="name"
-            >
-              Name
-            </button>
-            <button
-              class="sort"
-              data-action="sort"
-              data-sort-direction="asc"
-              data-sort="type"
-            >
-              type
-            </button>
-            <button
-              class="sort"
-              data-action="sort"
-              data-sort-direction="asc"
-              data-sort="house"
-            >
-              Houses
-            </button>
+          </button>
+          <div class="dropdown-content">
+            <button data-action="sort" data-sort="firstname">First name</button>
+            <button data-action="sort" data-sort="lastname">Last name</button>
           </div>
         </section>
       </div>
       <section class="grids">
-        <template id="student-list">
+        <template id="students">
           <div class="container">
             <article class="students-name">
               <h1 class="fn"></h1>
               <h1 class="sn"></h1>
               <h1 class="sh"></h1>
+
+              <!-- <td data-field="fn">NAME</td>
+              <td data-field="sn">TYPE</td> -->
             </article>
         </template>
        
@@ -120,6 +103,8 @@
           </div>
       </div>
   </div>
+
+</div>
 
     <script src="js/script.js"></script>
   </body>
