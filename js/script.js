@@ -1,148 +1,97 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", fetchData);
 
-let allStudents = [];
-
-//prototype for all students
-
-function init() {
-  fetchData();
-  /*   filterButton(); */
-}
 async function fetchData() {
-  console.log(fetchData);
   const response = await fetch(
     "https://petlatkea.dk/2021/hogwarts/students.json"
   );
-  const jsonData = await response.json();
+  const data = await response.json();
 
-  //when loaded prepare data object
-  prepareData(jsonData);
+  prepareData(data);
 }
 
-function prepareData(jsonData) {
-  allStudents = jsonData.map(prepareObject);
+let allStudents = [];
+
+function prepareData(data) {
+  allStudents = data.map(formatData);
+
   displayList(allStudents);
   buttonClicked();
 }
 
-function prepareObject(stu) {
-  console.log(stu);
+// here's all the students
+function formatData(stu) {
   const Student = {
-    fname: "",
-    mname: "",
-    lname: "",
-    house: "",
-    gender: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    nickname: "",
   };
+  const student = Object.create(Student);
 
-  const studentData = Object.create(Student);
-  console.log(studentData);
+  const removeSpace = stu.fullname.trim();
+  const firstSpace = removeSpace.indexOf(" ");
+  const lastSpace = removeSpace.lastIndexOf(" ");
 
-  //split the full details into parts
-  const infoSplit = stu.fullname.trim().split(" ");
-  const stuFName = stu.fName;
-  const stuMName = stu.mName;
-  const stuLName = stu.lName;
-  const stuHouse = stu.house.trim();
-  const stuGender = stu.gender;
-  //console.log(infoSplit);
-  //console.log(stuGender);
-  //console.log(stuHouse);
-  if (infoSplit.length == 1) {
-    studentData.fName = infoSplit[0];
+  // first name of the student
+  const firstNameOnly =
+    removeSpace.substring(0, firstSpace) || removeSpace.substring(0);
+  student.firstName =
+    firstNameOnly.substring(0, 1).toUpperCase() +
+    firstNameOnly.substring(1).toLowerCase();
+  // console.log(`First name _${student.firstName}_`)
 
-    //to change first name in uppercase
-    studentData.fName =
-      studentData.fName[0].toUpperCase() +
-      studentData.fName.substring(1).toLowerCase();
-  } else if (infoSplit.length == 2) {
-    studentData.fName = infoSplit[0];
-
-    //to change first name in uppercase
-    studentData.fName =
-      studentData.fName[0].toUpperCase() +
-      studentData.fName.substring(1).toLowerCase();
-
-    //change last name to uppercase
-    studentData.lName = infoSplit[1];
-    studentData.lName =
-      studentData.lName[0].toUpperCase() +
-      studentData.lName.substring(1).toLowerCase();
-  } else if (infoSplit.length == 3) {
-    studentData.fName = infoSplit[0];
-
-    //to change first name in uppercase
-    studentData.fName =
-      studentData.fName[0].toUpperCase() +
-      studentData.fName.substring(1).toLowerCase();
-
-    //to change mid name to upper case
-    studentData.mName = infoSplit[1];
-    studentData.mName =
-      studentData.mName[0].toUpperCase() +
-      studentData.mName.substring(1).toLowerCase();
-
-    //change last name to uppercase
-    studentData.lName = infoSplit[2];
-    studentData.lName =
-      studentData.lName[0].toUpperCase() +
-      studentData.lName.substring(1).toLowerCase();
+  // middle name and nickname
+  const middleNameOnly = removeSpace.substring(firstSpace + 1, lastSpace);
+  if (removeSpace.includes('"')) {
+    const removeQuotes = middleNameOnly.split('"').join("");
+    student.nickname =
+      removeQuotes.substring(0, 1).toUpperCase() +
+      removeQuotes.substring(1).toLowerCase();
+  } else if (middleNameOnly.length > 2) {
+    student.middleName =
+      middleNameOnly.substring(0, 1).toUpperCase() +
+      middleNameOnly.substring(1).toLowerCase();
+  } else {
+    student.nickname = undefined;
+    student.middleName = undefined;
   }
-  //studentData.name = infoSplit[0] + " " + infoSplit[1] + " " + infoSplit[2];
-  studentData.gender = stuGender;
-  studentData.gender =
-    studentData.gender[0].toUpperCase() +
-    studentData.gender.substring(1).toLowerCase();
 
-  studentData.house = stuHouse;
-  studentData.house =
-    studentData.house[0].toUpperCase() +
-    studentData.house.substring(1).toLowerCase();
+  // last name
+  if (removeSpace.includes(" ")) {
+    const lastNameOnly = removeSpace.substring(lastSpace + 1);
+    if (lastNameOnly.includes("-")) {
+      const hyphen = lastNameOnly.indexOf("-");
+      student.lastName =
+        lastNameOnly.substring(0, 1).toUpperCase() +
+        lastNameOnly.substring(1, hyphen).toLowerCase() +
+        lastNameOnly.substring(hyphen, hyphen + 2).toUpperCase() +
+        lastNameOnly.substring(hyphen + 2).toLowerCase();
+    } else {
+      student.lastName =
+        lastNameOnly.substring(0, 1).toUpperCase() +
+        lastNameOnly.substring(1).toLowerCase();
+    }
+  } else {
+    student.lastName = undefined;
+  }
 
-  studentData.fName = studentData.fName;
+  // gender
+  student.gender =
+    stu.gender.substring(0, 1).toUpperCase() +
+    stu.gender.substring(1).toLowerCase();
 
-  studentData.mName = studentData.mName;
+  // house
+  const removeHouseSpace = stu.house.trim();
+  student.house =
+    removeHouseSpace.substring(0, 1).toUpperCase() +
+    removeHouseSpace.substring(1).toLowerCase();
 
-  studentData.lName = studentData.lName;
-
-  //to show letters afetr hyphen and "" in uppercase
-  /* if (studentData.mName.includes('"')) {
-      studentData.mName =
-        studentData.mName[1].toUpperCase() +
-        studentData.mName
-          .substring(2, studentData.mName.lastIndexOf('"'))
-          .toLowerCase();
-    } */
-
-  /*     if (studentData.lName.includes("-")) {
-      studentData.lName =
-        studentData.lName[0].toUpperCase() +
-        studentData.lName
-          .substring(1, studentData.lName.indexOf("-"))
-          .toLowerCase() +
-        " " +
-        studentData.lName[studentData.lName.indexOf("-") + 1].toUpperCase() +
-        studentData.lName
-          .substring(studentData.lName.indexOf("-") + 2)
-          .toLowerCase();
-    } */
-
-  //show data
-
-  return studentData;
+  return student;
 }
 
-function displayList(st) {
-  //console.log(displayList);
-  //cleat the list
-  document.querySelector("main").innerHTML = "";
-
-  //create new list
-  st.forEach(displayStudent);
-}
-
+// filter by house
 function buttonClicked() {
   document
     .querySelectorAll("[data-action='filter']")
@@ -241,14 +190,21 @@ function sortByLastName(a, b) {
   }
 }
 
-function displayStudent(students) {
+// display data
+function displayList(s) {
+  console.log(s);
+  document.querySelector("main").innerHTML = "";
+  s.forEach(divideStudents);
+}
+
+function divideStudents(student) {
   //create clone
   const clone = document
     .querySelector("template#students")
     .content.cloneNode(true);
 
-  clone.querySelector(".fn").textContent = students.fName;
-  clone.querySelector(".sn").textContent = students.lName;
+  clone.querySelector(".fn").textContent = student.firstName;
+  clone.querySelector(".sn").textContent = student.lastName;
 
   clone
     .querySelector("article.students-name")
@@ -257,7 +213,6 @@ function displayStudent(students) {
   //append template
   document.querySelector("main").appendChild(clone);
 }
-
 //modal
 function showDetails(students) {
   console.log(students);
