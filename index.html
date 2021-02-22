@@ -33,32 +33,62 @@
     <div class="wrapper">
       <div class="filter-sort">
         <section class="filter">
-          <button id="all">All</button>
-          <button id="house">House</button>
-          <button id="Responsibilities">Responsibilities</button>
-          <button id="Blood">Blood</button>
-          
-            
-          
+          <button class="filter" data-action="filter" data-filter="all">
+            All
+          </button>
+          <button class="filter" data-action="filter" data-filter="house">
+            House
+          </button>
+          <button class="filter" data-action="filter" data-filter="resp">
+            Responsibilities
+          </button>
+          <button class="filter" data-action="filter" data-filter="type">
+            type
+          </button>
         </section>
         <section class="sort">
-          <button class="dropbtn">Sort by
+          <button class="dropbtn">
+            Sort by
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#">name</a>
-            <a href="#">House</a>
-            <a href="#">Responsobilities</a>
+            <button
+              class="sort"
+              data-action="sort"
+              data-sort-direction="asc"
+              data-sort="name"
+            >
+              Name
+            </button>
+            <button
+              class="sort"
+              data-action="sort"
+              data-sort-direction="asc"
+              data-sort="type"
+            >
+              type
+            </button>
+            <button
+              class="sort"
+              data-action="sort"
+              data-sort-direction="asc"
+              data-sort="house"
+            >
+              Houses
+            </button>
+          </div>
         </section>
       </div>
       <section class="grids">
-        <div class="container">
-          <article class="students-name">
-            <h1>harry potter</h1>
-          </article>
-         
+        <template id="student-list">
+          <div class="container">
+            <article class="students-name">
+              <h1 class="fn">harry potter</h1>
+            </article>
+        </template>
+       
         </div>
-      </section>
+      <main></main>
     </div>
 
     <script src="js/script.js"></script>
