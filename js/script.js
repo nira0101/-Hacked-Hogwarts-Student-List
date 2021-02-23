@@ -20,14 +20,14 @@ function prepareData(data) {
   buttonClicked();
 }
 
+const Student = {
+  firstName: "",
+  middleName: "",
+  lastName: "",
+  nickname: "",
+};
 // here's all the students
 function formatData(stu) {
-  const Student = {
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    nickname: "",
-  };
   const student = Object.create(Student);
 
   const removeSpace = stu.fullname.trim();
@@ -115,11 +115,25 @@ function filterCategory(event) {
 
   filteredList(filter);
 }
+//used clouser
+function filteredList(house) {
+  let filteredCategory = allStudents.filter(isHouse);
 
-function filteredList(filteredBy) {
+  function isHouse(student) {
+    if (student.house === house || house === "all") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  displayList(filteredCategory);
+}
+
+/* function filteredList(filteredBy) {
   let filteredCategory = allStudents;
   if (filteredBy === "Ravenclaw") {
-    filteredCategory = allStudents.filter(isRavenclaw);
+    filteredCategory = allStudents.filter(filterByCategory);
   } else if (filteredBy === "Gryffindor") {
     filteredCategory = allStudents.filter(isGryffindor);
   } else if (filteredBy === "Slytherin") {
@@ -133,18 +147,10 @@ function filteredList(filteredBy) {
   displayList(filteredCategory);
 }
 
-function isRavenclaw(student) {
+function filterByCategory(student) {
+  console.log(`student is:${filterByCategory}`);
   return student.house === "Ravenclaw";
 }
-
-function isGryffindor(student) {
-  if (student.house === "Gryffindor") {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 function isSlytherin(student) {
   if (student.house === "Slytherin") {
     return true;
@@ -153,13 +159,13 @@ function isSlytherin(student) {
   }
 }
 
-function isHufflepuff(student) {
-  if (student.house === "Hufflepuff") {
+function isHufflepuff(student) { */
+/*  if (student.house === "Hufflepuff") {
     return true;
   } else {
     return false;
   }
-}
+} */
 
 // sort by name
 function sortBy(sortedBy) {
@@ -173,7 +179,6 @@ function sortBy(sortedBy) {
 
   displayList(sorted);
 }
-
 function sortByFirstName(a, b) {
   if (a.firstName < b.firstName) {
     return -1;
@@ -208,18 +213,30 @@ function divideStudents(student) {
 
   clone
     .querySelector("article.students-name")
-    .addEventListener("click", (e) => showDetails(students));
+    .addEventListener("click", (e) => showDetails(student));
 
   //append template
   document.querySelector("main").appendChild(clone);
 }
 //modal
-function showDetails(students) {
-  console.log(students);
-  modal.querySelector(".modalfname").textContent =
-    students.fName + " " + students.mName + " " + students.lName;
-  modal.querySelector(".modalhouse").textContent = students.house;
-  modal.querySelector(".modalgender").textContent = students.gender;
+function showDetails(student) {
+  console.log(student);
+
+  modal.querySelector(".modalfname").textContent = student.firstName;
+  let midName = (modal.querySelector(".modalmname").textContent =
+    student.middleName);
+  modal.querySelector(".modallname").textContent = student.lastName;
+
+  if (student == midName) {
+    modal.querySelector(".modalfullname").textContent =
+      student.firstName + " " + student.middleName + " " + student.lastName;
+  } else {
+    modal.querySelector(".modalfname").textContent =
+      student.firstName + " " + student.lastName;
+  }
+
+  modal.querySelector(".modalhouse").textContent = student.house;
+  modal.querySelector(".modalgender").textContent = student.gender;
   modal.classList.remove("hide");
 }
 const close = document.querySelector(".close");
