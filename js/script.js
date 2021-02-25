@@ -14,14 +14,15 @@ async function fetchData() {
 let allStudents = [];
 
 const settings = {
-  filter: "",
+  filterBy: "all",
   sortBy: "",
 };
 
 function prepareData(data) {
   allStudents = data.map(formatData);
 
-  displayList(allStudents);
+  /*   displayList(allStudents); */
+  buildList();
   buttonClicked();
 }
 
@@ -30,6 +31,8 @@ const Student = {
   middleName: "",
   lastName: "",
   nickname: "",
+  photo: "",
+  winner: false,
 };
 // here's all the students
 function formatData(stu) {
@@ -119,8 +122,8 @@ function setFilter(filter) {
 }
 
 // filter by house i
-function filterList(filteredList) {
-  filteredList = allStudents.filter(isHouse);
+function filterList(inputList) {
+  const filteredList = inputList.filter(isHouse);
 
   function isHouse(student) {
     if (settings.filterBy === student.house || settings.filterBy === "all") {
@@ -208,18 +211,82 @@ function divideStudents(student) {
 function showDetails(student) {
   console.log(student);
 
-  modal.querySelector(".modalfname").textContent = student.firstName;
-  let midName = (modal.querySelector(".modalmname").textContent =
-    student.middleName);
-  modal.querySelector(".modallname").textContent = student.lastName;
+  modal.querySelector(".modalfname").textContent =
+    student.firstName + student.lastName;
 
-  if (student == midName) {
-    modal.querySelector(".modalfullname").textContent =
-      student.firstName + " " + student.middleName + " " + student.lastName;
-  } else {
-    modal.querySelector(".modalfname").textContent =
-      student.firstName + " " + student.lastName;
+  let banner_img = document.querySelector(".banner img");
+  if (student.house === "Ravenclaw") {
+    banner_img.src = "../images/banner_ravenclaw.jpg";
+  } else if (student.house === "Gryffindor") {
+    banner_img.src = "../images/banner_gryffindor.jpg";
+  } else if (student.house === "Slytherin") {
+    banner_img.src = "../images/banner_slytherin.jpg";
+  } else if (student.house === "Hufflepuff") {
+    banner_img.src = "../images/banner_hufflepuff.jpg";
   }
+
+  /*  modal.querySelector(".modalfname").textContent =
+    student.firstName + " " + student.middleName + " " + student.lastName;
+ */
+  // our data
+  const images = "../images/" + student.lastName;
+  const img_path =
+    "_" + student.firstName.substring(0, 1).toLowerCase() + ".png";
+
+  // images
+  if (
+    student.firstName === "Justin" ||
+    student.firstName === "Padma" ||
+    student.firstName === "Parvati" ||
+    student.firstName === "Leanne" ||
+    student.lastName === "d"
+  ) {
+    modal.querySelector(".modal-img").classList.add("empty");
+    modal.querySelector("img").remove();
+  } else {
+    modal.querySelector("img").src = images + img_path;
+  }
+
+  /*   modal.querySelector("[data-field=expel]").dataset.expel =
+    student.expelStudent;
+  modal
+    .querySelector("[data-field=expel]")
+    .addEventListener("click", expelStudentNow);
+
+  function expelStudentNow(event) {
+    if (student.expelStudent === true) {
+      student.expelStudent = false;
+      event.target.textContent = "Expel student";
+    } else {
+      student.expelStudent = true;
+      event.target.textContent = "Student expelled";
+      event.target.classList.add(".active");
+    }
+  } */
+
+  modal.querySelector(".prefect").addEventListener("click", decidePrefect);
+
+  function decidePrefect(event) {
+    if (student.nonPrefect === true) {
+      student.nonPrefect = false;
+      event.target.textContent = "Prefect";
+    } else {
+      student.nonPrefect = true;
+      event.target.textContent = "Non-Prefect";
+    }
+  }
+
+  /*  modal.querySelector(".add").addEventListener("click", decideMember); */
+
+  /* function decideMember(event) {
+    if (student.nonSquad === true) {
+      student.nonSquad = false;
+      event.target.textContent = "Inquisitorial Squad Member";
+    } else {
+      student.nonSquad = true;
+      event.target.textContent = "Non-Inquisitorial Squad Member";
+    }
+  } */
 
   modal.querySelector(".modalhouse").textContent = student.house;
   modal.querySelector(".modalgender").textContent = student.gender;

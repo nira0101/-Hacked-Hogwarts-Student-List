@@ -207,10 +207,8 @@ main {
 .modal-img {
   height: 8vw;
   width: 8vw;
-  background-image: url(../images/abbott_h.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  border-radius: 4px;
 }
 .close {
   position: absolute;
@@ -218,4 +216,25 @@ main {
 }
 .fa-times-circle:before {
   font-size: 31px;
+}
+
+.empty {
+  width: 108px;
+  height: 114px;
+  background-color: rgb(21, 110, 110);
+}
+.active {
+  background-color: red;
+}
+.banner img {
+  width: 10vw;
+  height: 10vw;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.std-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
