@@ -32,7 +32,7 @@ const Student = {
   lastName: "",
   nickname: "",
   photo: "",
-  winner: false,
+  prefect: false,
 };
 // here's all the students
 function formatData(stu) {
@@ -157,7 +157,7 @@ function sortBy(sortedList) {
   } else if (settings.sortedBy === "lastname") {
     return allStudents.sort(sortByLastName);
   }
-  console.log(sortedList, "sorted list");
+  /*  console.log(sortedList, "sorted list"); */
   return sortedList;
 }
 
@@ -186,7 +186,7 @@ function buildList() {
 
 // display data
 function displayList(s) {
-  console.log(s);
+  /* console.log(s); */
   document.querySelector("main").innerHTML = "";
   s.forEach(divideStudents);
 }
@@ -200,6 +200,25 @@ function divideStudents(student) {
   clone.querySelector(".fn").textContent = student.firstName;
   clone.querySelector(".sn").textContent = student.lastName;
 
+  //winner
+  if (student.prefect === true) {
+    clone.querySelector(".fn").classList.add("prefectsymbol");
+  } else if (student.prefect === false) {
+    clone.querySelector(".fn").classList.remove("prefectsymbol");
+  }
+
+  //prefect
+  clone.querySelector(".prefect").dataset.prefect = student.prefect;
+  clone.querySelector(".prefect").addEventListener("click", appointPrefect);
+  function appointPrefect() {
+    if (student.prefect === true) {
+      student.prefect = false;
+    } else {
+      tryToAppointPrefect(student);
+    }
+    buildList();
+  }
+
   clone
     .querySelector("article.students-name")
     .addEventListener("click", (e) => showDetails(student));
@@ -207,6 +226,81 @@ function divideStudents(student) {
   //append template
   document.querySelector("main").appendChild(clone);
 }
+
+//appoint prefect if allowed
+function tryToAppointPrefect(selectedStudent) {
+  //already selected prefects
+  const prefects = allStudents.filter((student) => student.prefect);
+  const numberOfPrefects = prefects.length;
+  const prefectsSameHouse = prefects.filter(prefectInHouse);
+
+  function prefectInHouse(student) {
+    if (student.house === selectedStudent.house && student.prefect) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //check if there're already two prefect from selected students house
+  if (prefectsSameHouse.length == 2) {
+    stopOrRemoveAPrefect(prefectsSameHouse[0], prefectsSameHouse[1]);
+  } else {
+    appointPrefect(selectedStudent);
+  }
+
+  function stopOrRemoveAPrefect(prefectA, prefectB) {
+    document.querySelector("#removeprefect").classList.remove("hide");
+    document
+      .querySelector("#removeprefect .closebutton")
+      .addEventListener("click", closeWarning);
+    document.querySelector("#removeprefect #prefectA").textContent =
+      prefectA.firstName;
+    document.querySelector("#removeprefect #prefectB").textContent =
+      prefectB.firstName;
+    document
+      .querySelector("#removeprefect #prefectA")
+      .addEventListener("click", removePrefectA);
+    document
+      .querySelector("#removeprefect #prefectB")
+      .addEventListener("click", removePrefectB);
+
+    function closeWarning() {
+      document.querySelector("#removeprefect").classList.add("hide");
+      document
+        .querySelector("#removeprefect .closebutton")
+        .removeEventListener("click", closeWarning);
+
+      document
+        .querySelector("#removeprefect #prefectA")
+        .removeEventListener("click", removePrefectA);
+      document
+        .querySelector("#removeprefect #prefectB")
+        .removeEventListener("click", removePrefectB);
+    }
+    function removePrefectA() {
+      removePrefect(prefectA);
+      appointPrefect(selectedStudent);
+      buildList();
+      closeWarning();
+    }
+
+    function removePrefectB() {
+      removePrefect(prefectB);
+      appointPrefect(selectedStudent);
+      buildList();
+      closeWarning();
+    }
+  }
+
+  function removePrefect(student) {
+    student.prefect = false;
+  }
+  function appointPrefect(student) {
+    student.prefect = true;
+  }
+}
+
 //modal
 function showDetails(student) {
   console.log(student);
@@ -264,7 +358,7 @@ function showDetails(student) {
     }
   } */
 
-  modal.querySelector(".prefect").addEventListener("click", decidePrefect);
+  /* modal.querySelector(".prefect").addEventListener("click", decidePrefect);
 
   function decidePrefect(event) {
     if (student.nonPrefect === true) {
@@ -275,7 +369,7 @@ function showDetails(student) {
       event.target.textContent = "Non-Prefect";
     }
   }
-
+ */
   /*  modal.querySelector(".add").addEventListener("click", decideMember); */
 
   /* function decideMember(event) {
@@ -292,6 +386,7 @@ function showDetails(student) {
   modal.querySelector(".modalgender").textContent = student.gender;
   modal.classList.remove("hide");
 }
+
 const close = document.querySelector(".close");
 const modal = document.querySelector(".modal-background");
 close.addEventListener("click", () => {

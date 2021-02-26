@@ -163,8 +163,8 @@ main {
   padding: 1vw;
 }
 .students-name {
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
   background: var(--grey1);
   display: flex;
   flex-direction: column;
@@ -237,4 +237,85 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+button[data-prefect="false"]::after {
+  content: "☆ Appoint prefect";
+}
+button[data-prefect="true"]::after {
+  content: "⭐ Remove as prefect";
+  filter: grayscale(1);
+}
+.prefectsymbol::before {
+  content: "⭐";
+}
+
+#removeprefect {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+#removeprefect {
+  background-color: rgba(214, 127, 127, 0.212);
+}
+
+#removeprefect .dialog {
+  background-color: white;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  overflow-y: scroll;
+  margin: 10vh auto;
+  flex-direction: column;
+  padding: 40px 20px;
+  box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.493);
+}
+#removeprefect div div {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  margin: auto;
+}
+#removeprefect button {
+  padding: 15px;
+  margin: 10px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 2px rgba(128, 128, 128, 0.274);
+  border-radius: 5px;
+}
+
+#removeprefect h2,
+#removeprefect p {
+  padding: 10px;
+  margin: 0 50px;
+}
+
+#removeprefect .prefectbutton::before {
+  content: "Remove ";
+}
+
+#popup img {
+  width: fit-content;
+}
+
+#removeprefect .closebutton {
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  color: black;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0);
+  align-self: flex-end;
+  box-shadow: none;
+  position: fixed;
+  top: 8vh;
+  right: 8vw;
+  z-index: 2;
+  border-radius: 25px;
 }

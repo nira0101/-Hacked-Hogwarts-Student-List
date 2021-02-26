@@ -69,7 +69,8 @@
         <template id="students">
           <div class="container">
             <article class="students-name">
-              
+             
+            
               <h1 class="fn"></h1>
               <h1 class="sn"></h1>
               <h1 class="sh"></h1>
@@ -77,7 +78,19 @@
               <!-- <td data-field="fn">NAME</td>
               <td data-field="sn">TYPE</td> -->
             </article>
-        </template>
+            <p class="popupprefect"></p>
+            <button class="prefect" data-field="prefect" data-prefect="false"></button>
+          </template>
+          <div id="removeprefect" class="hide">
+            <div class="dialog">
+                <button class="closebutton">X</button>
+                <h2>Warning!</h2>
+                <p>There are already two prefects appointed in this house.<br>Do you want to remove one of the other prefects.</p>
+                <div>
+                 <button id="prefectA" class="prefectbutton">Prefect A</button>
+                   <button id="prefectB" class="prefectbutton">Prefect B</button>
+                </div>
+            </div>
         
 
         </div>
@@ -102,15 +115,21 @@
           <h2 class="modalblood">0 +ve</h2>
           <h2 class="modalhouse">Slytherin</h2>
           <h2 class="modalgender">Slytherin</h2>
+
+         
           <div class="modal-buttons">
-            <button data-field="expel" data-expel="false" class="Expel">Expell</button>
+            <button data-field="expel"  class="Expel">Expell</button>
             <button class="add">Add to Inquisotorial</button>
-            <button class="prefect"> Non-prefect</button>
+           
+            
           </div>
       </div>
   </div>
 
+
+  
 </div>
+
 
     <script src="js/script.js"></script>
   </body>
