@@ -30,7 +30,45 @@
         </a>
       </div>
     </div>
+   
+     
+
     <div class="wrapper">
+      <div class="boxes">
+        <div class="expelled_total">
+            <div class="expelled_students">
+                <h2>Expelled students</h2>
+                <p>00</p>
+            </div>
+            <div class="students_total">
+                <h2>Total number of students</h2>
+                <p>00</p>
+            </div>
+        </div>
+        <div class="per_house">
+            <div class="slytherin_tl">
+                <h2>Slytherin</h2>
+                <p>00</p>
+            </div>
+            <div class="hufflepuff_tl">
+                <h2>Hufflepuff</h2>
+                <p>00</p>
+            </div>
+            <div class="gryffindor_tl">
+                <h2>Gryffindor</h2>
+                <p>00</p>
+            </div>
+            <div class="ravenclaw_tl">
+                <h2>Ravenclaw</h2>
+                <p>00</p>
+            </div>
+        </div>
+    </div>
+    <div class="total-list-number">
+      <h2>Total nr.</h2>
+      <p>00</p>
+  </div>
+
       <div class="filter-sort">
         <section class="filter">
           <button class="filter" data-action="filter" data-filter="all">
@@ -48,12 +86,11 @@
           <button class="filter" data-action="filter" data-filter="Gryffindor">
             Gryffindor
           </button>
+          
           <button class="filter" data-action="filter" data-filter="expelled">
             Expelled
           </button>
-          <button class="filter" data-action="filter" data-filter="not-expelled">
-            Not-Expelled
-          </button>
+          
         </section>
         <section class="sort">
          <!--  <button class="dropbtn">
@@ -80,8 +117,14 @@
             </article>
             <p class="popupprefect"></p>
             <button class="prefect" data-field="prefect" data-prefect="false"></button>
+           
+           
           </template>
+
+          
+
           <div id="removeprefect" class="hide">
+
             <div class="dialog">
                 <button class="closebutton">X</button>
                 <h2>Warning!</h2>
@@ -94,6 +137,8 @@
         
 
         </div>
+
+        
       <main></main>
     </div>
 
@@ -118,10 +163,8 @@
 
          
           <div class="modal-buttons">
-            <button data-field="expel"  class="Expel">Expell</button>
-            <button class="add">Add to Inquisotorial</button>
-           
-            
+            <button id="expellbtn" class="expellbtn">Expell❌</button>
+            <button id="insquad" class="insquad">Inquisitorial Squad</button>
           </div>
       </div>
   </div>

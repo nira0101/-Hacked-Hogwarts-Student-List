@@ -155,6 +155,55 @@ button:active {
   display: block;
 }
 
+/*list*/
+.boxes {
+  display: flex;
+  margin: 20px;
+}
+
+.boxes > div {
+  display: flex;
+  align-items: center;
+  width: 45%;
+  height: 200px;
+  margin: auto;
+  background-color: var(--color1);
+}
+.expelled_total,
+.per_house {
+  padding: 20px;
+}
+
+.expelled_total > div {
+  margin: auto;
+}
+
+.per_house > div {
+  margin: 15px;
+}
+.boxes h2,
+p {
+  color: white;
+  font-family: var(--primay-font);
+  font-size: 20px;
+}
+
+.total-list-number {
+  text-align: center;
+  width: 130px;
+  margin: auto;
+
+  background-color: var(--color3);
+  padding: 10px;
+  margin-bottom: 2vw;
+}
+.total-list-number h2,
+p {
+  color: white;
+  font-family: var(--primay-font);
+  font-size: 20px;
+}
+
 main {
   margin: 1.5vw;
   display: grid;
@@ -318,4 +367,30 @@ button[data-prefect="true"]::after {
   right: 8vw;
   z-index: 2;
   border-radius: 25px;
+}
+
+.clickedbutton {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: bolder;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #16a085 0%,
+    #f4d03f 51%,
+    #16a085 100%
+  );
+  margin: 5px;
+  padding: 10px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+}
+
+.clickedbutton:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
