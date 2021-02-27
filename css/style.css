@@ -394,3 +394,46 @@ button[data-prefect="true"]::after {
   color: #fff;
   text-decoration: none;
 }
+
+#hack {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+dialog {
+  display: block;
+  position: relative;
+  background-color: #d6bd9a;
+  color: #36384a;
+  box-shadow: 2px 2px 10px #36384a;
+  border-radius: 1em;
+  padding: 2em;
+  width: 20em;
+  top: 15%;
+  height: max-content;
+  align-items: center;
+  text-align: center;
+}
+
+#askExpell {
+  width: 17vw;
+  position: absolute;
+  top: 29vw;
+  background-color: var(--color1);
+  height: 10vw;
+  /* right: 3vw; */
+  left: 57vw;
+}
+.dialog p {
+  font-size: 12px;
+  padding: 0.5vw;
+}
+.dialog h1 {
+  font-size: 12px;
+  padding: 0.5vw;
+  font-family: var(--primay-font);
+  color: red;
+}
+.dialog button {
+  margin-left: 1vw;
+}
