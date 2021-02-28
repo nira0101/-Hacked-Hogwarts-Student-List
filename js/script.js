@@ -243,21 +243,20 @@ function displaySingleStudent(student) {
   clone.querySelector(".fn").textContent = student.firstName;
   clone.querySelector(".sn").textContent = student.lastName;
 
-  //winner
+  //prefect
   if (student.prefect === true) {
     clone.querySelector(".fn").classList.add("prefectsymbol");
   } else if (student.prefect === false) {
     clone.querySelector(".fn").classList.remove("prefectsymbol");
   }
 
-  //prefect
   clone.querySelector(".prefect").dataset.prefect = student.prefect;
   clone.querySelector(".prefect").addEventListener("click", appointPrefect);
   function appointPrefect() {
     if (student.prefect === true) {
       student.prefect = false;
     } else if (student.expelled === true) {
-      alert("something is wrong");
+      alert("This student is expelled ");
     } else {
       tryToAppointPrefect(student);
     }
@@ -470,7 +469,7 @@ function toggleSquad() {
     }
   } else {
     alert(
-      "This student is expelled! An expelled students can't be a part of the Inquisitorial Squad!"
+      "This student is expelled! you cannot add the student into Inquisitorial Squad!"
     );
   }
 
@@ -482,9 +481,7 @@ function toggleSquad() {
     ) {
       makeSquad();
     } else {
-      alert(
-        "Only pure-blooded students from Slytherin can join the Inquisitorial Squad! 🐍"
-      );
+      alert(" You can only add pure-blooded students from Slytherin 🐍");
     }
   }
 
@@ -635,10 +632,10 @@ function hackTheSystem() {
 
     buildList();
     setTimeout(function () {
-      alert("The Dark Lord is back, you have been hacked!!! ☠ ☠ ☠");
+      alert("The system has been hacked!!! ☠");
     }, 100);
   } else {
-    alert("Wuups.. System's allready been hacked!");
+    alert("^-^ it's hacked!");
   }
 }
 

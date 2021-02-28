@@ -1,0 +1,48 @@
+
+Pseudocode
+--  at the end means the things i dont know
+
+Expelling
+ -set a variable 
+ - set a new value  to false in STudent(Prototype)
+ - set a function in modal to be able to click in expell and expell student
+ - link the function to a different function which will have the condition--
+ - Make a condition, when clicked expell the function opens ask modal and asks if the user wan to expell--
+ - If user selects epell , expell the student and if not close the askModal--
+ - display expelled student in filter
+
+
+ Prefect
+  -Set a variable
+  - set  a new value to false in Student (Prototype)
+  - set a function in displaySingleStudent which will have a condition to choose prefect student 
+  - set a function which will have closure of different function which will have 
+  all the conditions to choose prefect student
+  -select all student, define student hosue and deifne house length for prefect--
+  -make a function to check if the selected students are from same house.--
+  - if the student are from same house give option to remove student A or B--
+  - set a function to remove 2 students--
+  - make a function  which has a condition that if tsudent house is 2 and from differen house--
+    appoint perfect else give an option to remove.
+
+
+Blood Status
+ - Set a variable
+ - define  the variable in Prototype
+ - fetch it the same way in async function but give different name
+ -make a function with condition
+   if the student last name is define as half then return half
+   else return true---
+- display it in modal
+
+hackTheSystem
+-set a variable and set its value to false
+- add a event listener in the stnc function which will hack the hackTheSystem
+- make a hack function --
+- make a condition that if the hacked system is false --
+console log  the hack--
+set timeout function to give notification--
+ insert myself in the student list
+
+ - make a function to hack blood system too
+   ma a condition to make pure blood half blood and half blood pure blood

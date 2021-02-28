@@ -437,3 +437,8 @@ dialog {
 .dialog button {
   margin-left: 1vw;
 }
+
+#hack {
+  font-size: 20px;
+  font-family: var(--primay-font);
+}
